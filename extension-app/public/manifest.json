@@ -1,0 +1,20 @@
+{
+	"manifest_version": 3,
+	"name": "TimeWise",
+	"version": "1.0.0",
+	"description": "Your time management assistant.",
+	"permissions": ["activeTab", "storage", "scripting"],
+	"icons": {
+		"16": "icon.jpg",
+		"48": "icon.jpg",
+		"128": "icon.jpg"
+	},
+	"action": {
+		"default_popup": "index.html",
+		"default_title": "Open the popup"
+	},
+	"host_permissions": ["https://www.linkedin.com/*"],
+	"background": {
+		"service_worker": "background.js"
+	}
+}
