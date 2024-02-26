@@ -1,68 +1,61 @@
-import React from "react";
-import { FaUserGear } from "react-icons/fa6";
-import { ROUTES } from "../utils/routes";
+// import React from "react";
+import { useState, useEffect } from "react";
+import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
+import {
+	MainContainer,
+	ChatContainer,
+	MessageList,
+	Message,
+	MessageInput,
+	TypingIndicator,
+} from "@chatscope/chat-ui-kit-react";
+import { SYSTEM_PROMPT, WELCOME_PROMPT } from "../utils/prompts";
+import { sendMessageToGPT } from "../utils/gptUtils";
 
 function Chatbot({ setPage }) {
-	function sendToLanguageModel(message) {
-		return new Promise((resolve) => {
-			setTimeout(() => {
-				resolve("Hello! How can I assist you?"); // Replace with your actual API call
-			}, 1000);
-		});
-	}
+	const [messages, setMessages] = useState([WELCOME_PROMPT]);
 
-	const Popup = () => {
-		const [messages, setMessages] = useState([]);
-		const [userInput, setUserInput] = useState("");
-		const chatBodyRef = useRef(null);
+	const [isTyping, setIsTyping] = useState(false);
 
-		// Send message to language model
-		const handleSubmit = async (event) => {
-			event.preventDefault();
-
-			setMessages([...messages, { text: userInput, isBot: false }]);
-			setUserInput("");
-
-			try {
-				const response = await sendToLanguageModel(userInput);
-				setMessages([...messages, { text: response, isBot: true }]);
-			} catch (error) {
-				console.error("Error fetching chatbot response:", error);
-			}
+	const handleSend = async (message) => {
+		const newMessage = {
+			message,
+			direction: "outgoing",
+			sender: "user",
 		};
 
-		// Scroll to the bottom on new message
-		useEffect(() => {
-			if (chatBodyRef.current) {
-				chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
-			}
-		}, [messages]);
+		const newMessages = [...messages, newMessage];
 
-		return (
-			<div id="chat-container">
-				{/* ... Chat header ... */}
-				<div id="chat-body" ref={chatBodyRef}>
-					{messages.map((message, index) => (
-						<div
-							key={index}
-							className={message.isBot ? "bot-message" : "user-message"}
-						>
-							{message.text}
-						</div>
-					))}
-				</div>
-				{/* ... Chat Input ... */}
-				<form onSubmit={handleSubmit}>
-					<input
-						type="text"
-						value={userInput}
-						onChange={(e) => setUserInput(e.target.value)}
-					/>
-					<button type="submit">Send</button>
-				</form>
-			</div>
-		);
+		setMessages(newMessages);
+		setIsTyping(true);
+		// this is a async function!!!!
+		sendMessageToGPT(newMessages, setMessages, setIsTyping);
 	};
+
+	return (
+		<div className="App">
+			<div style={{ position: "relative", height: "800px", width: "700px" }}>
+				<MainContainer>
+					<ChatContainer>
+						<MessageList
+							scrollBehavior="smooth"
+							typingIndicator={
+								isTyping ? (
+									<TypingIndicator content="TimeWise is typing" />
+								) : null
+							}
+						>
+							{messages.map((message, i) => {
+								console.log(message);
+								return <Message key={i} model={message} />;
+							})}
+						</MessageList>
+						<MessageInput placeholder="Type message here" onSend={handleSend} />
+					</ChatContainer>
+				</MainContainer>
+			</div>
+		</div>
+	);
 }
 
 export default Chatbot;
