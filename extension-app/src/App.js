@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
+
+import Chatbot from "./components/Chatbot";
 import Generator from "./components/Generator";
 import Profile from "./components/Profile";
-import Chatbot from "./components/Chatbot";
 import { ROUTES } from "./utils/routes";
 import { loadData } from "./utils/localStorage";
 

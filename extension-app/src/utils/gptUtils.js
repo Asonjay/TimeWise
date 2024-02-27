@@ -1,10 +1,12 @@
 import { SYSTEM_PROMPT } from "./prompts";
-const API_KEY = "";
+
+const API_KEY = "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";
+const OPENAI_MODEL = "gpt-3.5-turbo";
 
 const apiRequestBody = (apiMessages) => {
 	return {
-		model: "gpt-3.5-turbo",
-		messages: [SYSTEM_PROMPT, apiMessages],
+		model: OPENAI_MODEL,
+		messages: [SYSTEM_PROMPT, ...apiMessages],
 	};
 };
 
@@ -16,27 +18,26 @@ export async function sendMessageToGPT(chatMessages, setMessages, setIsTyping) {
 		};
 	});
 
+	console.log(apiRequestBody(apiMessages));
+
 	await fetch("https://api.openai.com/v1/chat/completions", {
 		method: "POST",
 		headers: {
-			Authorization: "Bearer" + API_KEY,
+			Authorization: "Bearer " + API_KEY,
 			"Content-Type": "application/json",
 		},
-		body: JSON.stringify(apiRequestBody(chatMessages)),
+		body: JSON.stringify(apiRequestBody(apiMessages)),
 	})
 		.then((data) => {
 			return data.json();
 		})
 		.then((data) => {
-			// GPT response structure
 			console.log(data);
-
-			// TODO: the usestate is back at main function
 			setMessages([
 				...chatMessages,
 				{
 					message: data.choices[0].message.content,
-					sender: "GPT",
+					sender: "ChatGPT",
 				},
 			]);
 			setIsTyping(false);

@@ -66,3 +66,25 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+### Credit
+
+- [Build A Chatbot With The ChatGPT API In React (gpt-3.5-turbo Tutorial)](https://www.youtube.com/watch?v=Lag9Pj_33hM)
+
+- Custom Content
+
+```
+<Message model={{
+  direction: "incoming"
+}}>
+            <Avatar src={akaneIco} name="Akane" />
+            <Message.CustomContent>
+                <Linkify componentDecorator={(decoratedHref, decoratedText, key) => <a target="blank" rel="noopener" href={decoratedHref} key={key}>
+                        {decoratedText}
+                    </a>}>
+                    This message contains link to the https://chatscope.io website.<br />
+                    This link is clickable thanks to the https://github.com/tasti/react-linkify library.
+                </Linkify>
+            </Message.CustomContent>
+        </Message>
+```
