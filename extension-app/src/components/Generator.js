@@ -1,6 +1,6 @@
 import React from "react";
 import { FaUserGear } from "react-icons/fa6";
-import { ROUTES } from "../utils/routes";
+import { ROUTES } from "../utils/enums";
 
 function Generator({ setPage }) {
 	return (

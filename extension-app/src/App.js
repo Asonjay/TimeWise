@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 
-import Chatbot from "./components/Chatbot";
+import ChatBot from "./components/ChatBot";
 import Generator from "./components/Generator";
 import Profile from "./components/Profile";
-import { ROUTES } from "./utils/routes";
+import { ROUTES } from "./utils/enums";
 import { loadData } from "./utils/localStorage";
 
 function App() {
@@ -36,7 +36,7 @@ function App() {
 				/>
 			);
 		default:
-			return <Chatbot setPage={setPage} />;
+			return <ChatBot setPage={setPage} />;
 	}
 }
 

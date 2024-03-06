@@ -1,3 +1,5 @@
+import { MESSAGE_TYPE } from "./enums";
+
 export const SYSTEM_PROMPT = {
 	role: "system",
 	content:
@@ -5,9 +7,8 @@ export const SYSTEM_PROMPT = {
 };
 
 export const WELCOME_PROMPT = {
+	type: MESSAGE_TYPE.TEXT,
 	message: "Hello, this is TimeWise! Ask me anything!",
 	sentTime: "just now",
 	sender: "GPT",
 };
-
-

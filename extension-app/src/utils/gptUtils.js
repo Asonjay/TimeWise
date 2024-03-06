@@ -1,6 +1,7 @@
+import { MESSAGE_TYPE } from "./enums";
 import { SYSTEM_PROMPT } from "./prompts";
 
-const API_KEY = "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";
+const API_KEY = "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";
 const OPENAI_MODEL = "gpt-3.5-turbo";
 
 const apiRequestBody = (apiMessages) => {
@@ -11,6 +12,7 @@ const apiRequestBody = (apiMessages) => {
 };
 
 export async function sendMessageToGPT(chatMessages, setMessages, setIsTyping) {
+	console.log(chatMessages);
 	let apiMessages = chatMessages.map((messageObject) => {
 		return {
 			role: messageObject.sender === "GPT" ? "assistant" : "user",
@@ -36,8 +38,10 @@ export async function sendMessageToGPT(chatMessages, setMessages, setIsTyping) {
 			setMessages([
 				...chatMessages,
 				{
+					type: MESSAGE_TYPE.TEXT,
 					message: data.choices[0].message.content,
 					sender: "ChatGPT",
+					position: "single",
 				},
 			]);
 			setIsTyping(false);

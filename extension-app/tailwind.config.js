@@ -1,11 +1,11 @@
 module.exports = {
-  content: [
-    "./public/**/*.html",
-    "./src/**/*.{js,jsx,ts,tsx}",
-    "./node_modules/flowbite/**/*.js",
-  ],
-  theme: {
-    extend: {},
-  },
-  plugins: [require("flowbite/plugin")],
+	content: [
+		"./public/**/*.html",
+		"./src/**/*.{js,jsx,ts,tsx}",
+		"./node_modules/flowbite/**/*.js",
+	],
+	theme: {
+		extend: { borderStyle: ["hover", "focus"] },
+	},
+	plugins: [require("flowbite/plugin")],
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { ROUTES } from "../utils/routes";
+import { ROUTES } from "../utils/enums";
 import { saveData } from "../utils/localStorage";
 
 function Profile({ setPage, resume, setResume, openAIKey, setOpenAIKey }) {
