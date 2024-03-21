@@ -10,19 +10,34 @@ body {
 		sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	width: 600px;
+	height: 400px;
 }
 
 .chatbot-container {
-	border: 2px solid #000;
+	/* border: 2px solid #000; */
 	position: relative;
-	height: 500px;
-	width: 500px;
+	height: 400px;
+	width: 600px;
 }
 
 .outer {
-	width: 100%;
-	text-align: center;
+	margin-left: 50px;
+	display: flex;
+	gap: 20px;
 }
-.inner {
-	display: inline-block;
+
+.styled-button {
+	padding: 10px 20px;
+	font-size: 16px;
+	color: #ffffff;
+	background-color: #007bff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.styled-button:hover {
+	background-color: #0056b3;
 }

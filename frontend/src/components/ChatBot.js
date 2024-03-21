@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
 import {
 	MainContainer,
 	ChatContainer,
@@ -13,7 +12,6 @@ import {
 import { WELCOME_PROMPT } from "../utils/prompts";
 import { sendMessageToGPT } from "../utils/gptUtils";
 import { MESSAGE_TYPE } from "../utils/enums";
-import "../index.css";
 import robotIco from "../assets/robot.jpg";
 
 function Chatbot({ setPage }) {
@@ -37,9 +35,6 @@ function Chatbot({ setPage }) {
 		await sendMessageToGPT(newMessages, setMessages, setIsTyping);
 	};
 
-	const sayHello = () => {
-		alert("Hello!");
-	};
 
 	const renderTextChatBox = (message, i) => {
 		switch (message.type) {
@@ -89,17 +84,17 @@ function Chatbot({ setPage }) {
 						</Message>
 						<div class="outer">
 							<div class="inner">
-								<button class="styled-button" onClick={sayHello}>
+								<button class="styled-button">
 									Are you tired?
 								</button>
 							</div>
 							<div class="inner">
-								<button class="styled-button" onClick={sayHello}>
+								<button class="styled-button">
 									Take a break
 								</button>
 							</div>
 							<div class="inner">
-								<button class="styled-button" onClick={sayHello}>
+								<button class="styled-button">
 									Save
 								</button>
 							</div>
