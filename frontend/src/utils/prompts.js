@@ -8,7 +8,10 @@ export const SYSTEM_PROMPT = {
 
 export const WELCOME_PROMPT = {
 	type: MESSAGE_TYPE.TEXT,
-	message: "Hello, this is TimeWise! Ask me anything!",
-	sentTime: "just now",
-	sender: "GPT",
+	content: {
+		message: "Hello, this is TimeWise! Ask me anything!",
+		sender: "GPT",
+		direction: "incoming",
+		position: "single",
+	},
 };
