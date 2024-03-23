@@ -1,11 +1,31 @@
 import { MESSAGE_TYPE } from "../utils/enums";
-import { Message, Avatar } from "@chatscope/chat-ui-kit-react";
+import { Message, Avatar, TypingIndicator } from "@chatscope/chat-ui-kit-react";
 import robotIco from "../assets/robot.jpg";
 
 export const chatBubbleTemplate = (message, i) => {
 	switch (message.type) {
 		case MESSAGE_TYPE.TEXT:
-			console.log(message);
+			// console.log(message);
+			// return (
+			// 	<Message
+			// 		model={{
+			// 			direction: "incoming",
+			// 			type: "custom",
+			// 		}}
+			// 	>
+			// 		{/* <Avatar src={robotIco} /> */}
+			// 		<Message.CustomContent>
+			// 			<div class="typing-indicator">
+			// 				{/* <div class="text">TimeWise is thinking</div> */}
+			// 				<div class="dot-wrap">
+			// 					<div class="dot"></div>
+			// 					<div class="dot"></div>
+			// 					<div class="dot"></div>
+			// 				</div>
+			// 			</div>
+			// 		</Message.CustomContent>
+			// 	</Message>
+			// );
 			return <Message key={i} model={message.content} />;
 		case MESSAGE_TYPE.TEXT_WITH_IMAGE:
 			return (
@@ -44,4 +64,8 @@ export const chatBubbleTemplate = (message, i) => {
 		default:
 			return <></>;
 	}
+};
+
+export const typingIndicatorTemplate = () => {
+	return <TypingIndicator content="TimeWise is thinking" />;
 };

@@ -22,6 +22,8 @@ function Chatbot({ setPage }) {
 	const [isTyping, setIsTyping] = useState(false);
 
 	const handleSend = async (message) => {
+		message.preventDefault();
+
 		const newMessage = {
 			type: MESSAGE_TYPE.TEXT_WITH_BUTTONS,
 			message,

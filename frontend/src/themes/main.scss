@@ -1,7 +1,5 @@
-// @import "./themes/overrides";
-// @use "../node_modules/@chatscope/chat-ui-kit-styles/themes/default/variables" with (
+@use "sass:math";
 
-// );
 body {
 	margin: 1px 2px 2px 1px;
 	-webkit-font-smoothing: antialiased;
@@ -20,5 +18,132 @@ body {
 	height: 595px;
 }
 
-@import "./overrides";
+// Typing Animation
+
+// $dotWH: 6px; // dot width and height
+// $dotWrapWidth: 40px; // outer wrap of dots
+// $dotOffset: 10%;
+// $animationOffset: 50%;
+
+// @mixin calc($property, $expression) {
+// 	#{$property}: -moz-calc(#{$expression});
+// 	#{$property}: -webkit-calc(#{$expression});
+// 	#{$property}: calc(#{$expression});
+// }
+
+// .typing-indicator {
+// 	display: flex;
+// 	flex-direction: row;
+// 	height: 20px;
+// 	.text {
+// 		height: 25px;
+// 	}
+// }
+// .dot-wrap {
+// 	width: $dotWrapWidth;
+// 	height: 8px;
+// 	margin: auto;
+// 	position: relative;
+// 	top: 0;
+// 	left: 0;
+// 	bottom: 0;
+// 	right: 0;
+
+// 	.dot {
+// 		width: $dotWH;
+// 		height: $dotWH;
+// 		background-color: #0099ff;
+// 		position: absolute;
+// 		margin: auto;
+// 		top: -$animationOffset;
+// 		animation: dotshift 1s infinite;
+// 		animation-timing-function: ease-in-out;
+// 		border-radius: 50%;
+
+// 		// could also be :first-child, but I used this for clarity
+// 		&:nth-child(1) {
+// 			@include calc(left, percentage(math.div(1, 3)) - $dotOffset "-" $dotWH);
+
+// 			animation-delay: 0.25s;
+// 		}
+
+// 		&:nth-child(2) {
+// 			@include calc(
+// 				left,
+// 				percentage(math.div(1, 3)) * 2 - $dotOffset "-" $dotWH
+// 			);
+
+// 			animation-delay: 0.5s;
+// 		}
+
+// 		// could also be :last-child, but I used this for clarity
+// 		&:nth-child(3) {
+// 			@include calc(
+// 				left,
+// 				percentage(math.div(1, 3)) * 3 - $dotOffset "-" $dotWH
+// 			);
+
+// 			animation-delay: 0.75s;
+// 		}
+// 	}
+// }
+
+// @keyframes dotshift {
+// 	0% {
+// 		top: -$animationOffset;
+// 	}
+// 	50% {
+// 		top: $animationOffset;
+// 	}
+// 	100% {
+// 		top: -$animationOffset;
+// 	}
+// }
+
+// Message animation
+.cs-message__content {
+	opacity: 0;
+	transform: translateY(20px);
+
+	animation-name: slide-down;
+	animation-duration: 0.5s; /* Adjust duration as desired */
+	animation-fill-mode: forwards; /* Keep final state */
+}
+
+.cs-typing-indicator {
+	opacity: 0;
+	transform: translateY(20px);
+
+	animation-name: slide-up;
+	animation-duration: 0.5s; /* Adjust duration as desired */
+	animation-fill-mode: forwards; /* Keep final state */
+}
+
+@keyframes slide-down {
+	0% {
+		opacity: 0;
+		transform: translateY(-20px); /* Adjust offset as needed */
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes slide-up {
+	0% {
+		opacity: 0;
+		transform: translateY(20px); /* Adjust offset as needed */
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.border-top-active {
+	border-top: 1px solid #d0d0d0 !important; /* Replace with your desired border color */
+}
+
+@import "./override";
 @import "../../node_modules/@chatscope/chat-ui-kit-styles/themes/default/main";

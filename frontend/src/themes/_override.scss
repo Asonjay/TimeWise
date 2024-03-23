@@ -3,6 +3,7 @@
 //  1. Default font family
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital@0;1&display=swap");
 $default-font-family: "Source Sans 3", sans-serif;
+
 /* 
   Font Size Varialbles:
     $message-content-font-size: 1.2em !default;
@@ -42,7 +43,42 @@ $color-secondary-dark: #64d3d3 !default;
 	background-repeat: no-repeat; /* Prevent image repetition */
 	background-size: 75%;
 	background-position: center;
+	font-size: 1em !important;
 }
+
+// 4. Message Content
+.cs-message__content {
+	padding: 8px 10px !important;
+}
+
+// 4. Typing Indicator
+.cs-typing-indicator {
+	left: unset !important;
+	right: unset !important;
+	// create a border on the top with 1px
+	// border-top: solid 1px #d0d0d0;
+	font-size: 1em !important;
+	justify-content: center;
+}
+
+// 5. Message Input
+.cs-message-input {
+	border-top: solid 1px #d0d0d0 !important;
+}
+
+// 6. Scrollbar
+// .cs-message-list__scroll-wrapper {
+// 	overflow: scroll;
+// 	scroll-behavior: smooth;
+// }
+
+// .cs-message-input::before {
+// 	border-top: 0px;
+// }
+
+// .cs-typing-indicator:not(:visible) ~ .cs-message-input::before {
+// 	opacity: 1;
+// }
 
 // -------------------------------------------------------------------
 // Main class prefix

@@ -9,15 +9,17 @@ import {
 	TypingIndicator,
 } from "@chatscope/chat-ui-kit-react";
 import { WELCOME_PROMPT } from "../utils/prompts";
-import { sendMessageToGPT } from "../utils/gptUtils";
+import { sendMessageToLLM } from "../utils/backend";
 import { MESSAGE_TYPE } from "../utils/enums";
-import robotIco from "../assets/robot.jpg";
 import { chatBubbleTemplate } from "./chatBubbleTemplate";
+import { useBorderToggle } from "./customHook";
 
 function Chatbot({ setPage }) {
 	const [messages, setMessages] = useState([WELCOME_PROMPT]);
 	const [messageType, setMessageType] = useState(MESSAGE_TYPE.TEXT);
 	const [isTyping, setIsTyping] = useState(false);
+
+	// useBorderToggle();
 
 	const handleSend = async (message) => {
 		const newMessage = {
@@ -34,7 +36,7 @@ function Chatbot({ setPage }) {
 		// const newMessageTypes = [...messageType, MESSAGE_TYPE.TEXT];
 		setMessages(newMessages);
 		setIsTyping(true);
-		await sendMessageToGPT(newMessages, setMessages, setIsTyping);
+		await sendMessageToLLM(newMessages, setMessages, setIsTyping);
 	};
 
 	return (
@@ -46,12 +48,13 @@ function Chatbot({ setPage }) {
 							<ConversationHeader.Content userName="🤖TimeWise🤖" />
 						</ConversationHeader>
 						<MessageList
-							scrollBehavior="smooth"
+							scrollBehavior="auto"
 							typingIndicator={
 								isTyping ? (
-									<TypingIndicator content="TimeWise is typing" />
+									<TypingIndicator content="TimeWise is thinking" />
 								) : null
 							}
+							autoScrollToBottom={true}
 						>
 							{messages.map((message, i) => {
 								return chatBubbleTemplate(message, i);
