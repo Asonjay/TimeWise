@@ -1,14 +1,8 @@
 /* Overriden Variables */
 
-//  1. Default font family
+// 1. Default font family
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital@0;1&display=swap");
 $default-font-family: "Source Sans 3", sans-serif;
-
-/* 
-  Font Size Varialbles:
-    $message-content-font-size: 1.2em !default;
-    $message-input-content-editor-container-font-size: 1.2em !default;
-*/
 
 // 2. Conversation Header Overrides
 $color-primary: #c6e3fa !default;
@@ -48,17 +42,30 @@ $color-secondary-dark: #64d3d3 !default;
 
 // 4. Message Content
 .cs-message__content {
-	padding: 8px 10px !important;
+	opacity: 0;
+	transform: translateY(20px);
+
+	animation-name: slide-down;
+	animation-duration: 0.5s; /* Adjust duration as desired */
+	animation-fill-mode: forwards; /* Keep final state */
+	padding: 5px 10px !important;
+
+	// box-shadow: 5px 5px 3px 1px rgba(0, 0, 0, 0.3);
 }
 
 // 4. Typing Indicator
 .cs-typing-indicator {
 	left: unset !important;
 	right: unset !important;
-	// create a border on the top with 1px
-	// border-top: solid 1px #d0d0d0;
 	font-size: 1em !important;
 	justify-content: center;
+
+	// Animation
+	opacity: 0;
+	transform: translateY(20px);
+	animation-name: slide-up;
+	animation-duration: 0.5s; /* Adjust duration as desired */
+	animation-fill-mode: forwards; /* Keep final state */
 }
 
 // 5. Message Input
@@ -66,19 +73,28 @@ $color-secondary-dark: #64d3d3 !default;
 	border-top: solid 1px #d0d0d0 !important;
 }
 
-// 6. Scrollbar
-// .cs-message-list__scroll-wrapper {
-// 	overflow: scroll;
-// 	scroll-behavior: smooth;
-// }
+// 6. Animations
+@keyframes slide-down {
+	0% {
+		opacity: 0;
+		transform: translateY(-20px); /* Adjust offset as needed */
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
 
-// .cs-message-input::before {
-// 	border-top: 0px;
-// }
-
-// .cs-typing-indicator:not(:visible) ~ .cs-message-input::before {
-// 	opacity: 1;
-// }
+@keyframes slide-up {
+	0% {
+		opacity: 0;
+		transform: translateY(20px); /* Adjust offset as needed */
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
 
 // -------------------------------------------------------------------
 // Main class prefix

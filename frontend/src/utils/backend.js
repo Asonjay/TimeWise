@@ -3,12 +3,19 @@ import axios from "axios";
 import { MESSAGE_TYPE } from "./enums";
 
 function _parseResponse(response) {
-	console.log("Receiving <- " + response);
+	console.log("Receiving <- ");
+	console.log(response.data);
+	const message = response.data.message
+		.replace(/\n/g, "")
+		.replace(/\\\\/g, "\\");
+
+	const jsonMessage = JSON.parse(message);
+
 	return {
-		type: MESSAGE_TYPE.TEXT,
+		type: jsonMessage.TYPE,
 		content: {
-			message: response.data.message,
-			sender: "ChatGPT",
+			message: jsonMessage.CONTENT,
+			sender: "model",
 			position: "single",
 			direction: "incoming",
 		},

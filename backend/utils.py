@@ -1,4 +1,5 @@
 import os
+import json
 import yaml
 
 
@@ -15,9 +16,11 @@ _color_string = {
     "END": "\033[0m"
 }
 
-def print_with_color(text: str, color: str) -> None:
-    print(f"{_color_string[color]}{text}{_color_string['END']}")
-    return None
+def print_with_color(text, color:str, type:str="text"):
+    if type == "json":
+        print(f"{_color_string[color]}{json.dumps(text, indent=2)}{_color_string['END']}")
+    else:
+        print(f"{_color_string[color]}{text}{_color_string['END']}")
 
 
 def load_config(config_path="./config.yaml", api_key_path="./api_key.yaml"):
@@ -29,5 +32,4 @@ def load_config(config_path="./config.yaml", api_key_path="./api_key.yaml"):
         api_key = yaml.safe_load(file)
     configs.update(api_key)
     return configs
-
 

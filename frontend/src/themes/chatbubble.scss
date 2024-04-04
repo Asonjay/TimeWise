@@ -1,0 +1,69 @@
+/* Responsive Table Theme
+*  Modified from: https://codepen.io/asonjay/pen/KKYZrXm
+*/
+$baseColor: #398b93;
+$borderRadius: 5px;
+$imageBig: 100px;
+$imageSmall: 60px;
+$padding: 3px;
+
+.header {
+	background-color: darken($baseColor, 5%);
+	color: white;
+	font-size: 1.5em;
+	padding: 1rem;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+// img {
+//    border-radius: 50%;
+//    height: $imageSmall;
+//    width: $imageSmall;
+// }
+
+.table-users {
+	border: 1px solid darken($baseColor, 5%);
+	border-radius: $borderRadius;
+	box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+	max-width: calc(100%);
+	margin: 1em auto;
+	overflow: hidden;
+	// width: 600px;
+	font-size: 1rem;
+}
+
+table {
+	width: 100%;
+
+	td,
+	th {
+		color: darken($baseColor, 10%);
+		padding: $padding;
+	}
+
+	td {
+		text-align: center;
+		vertical-align: middle;
+		font-size: 0.9em;
+		// white-space: nowrap;
+	}
+
+	th {
+		background-color: lighten($baseColor, 50%);
+		// font-weight: 300;
+		font-size: 1em;
+		// white-space: nowrap;
+	}
+
+	tr {
+		&:nth-child(2n) {
+			background-color: white;
+		}
+		&:nth-child(2n + 1) {
+			background-color: lighten($baseColor, 55%);
+		}
+	}
+}
+
+// ----------------------------------------------------------

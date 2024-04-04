@@ -74,6 +74,7 @@ class OpenAIModel(BaseModel):
             "max_tokens": self.max_tokens
         }
         response = requests.post(self.base_url, headers=headers, json=payload).json()
+        print_with_color(response["choices"][0]["message"], "GREEN", type="json")
         if "error" not in response:
             self._get_pricing(response['usage']["prompt_tokens"], response['usage']["completion_tokens"])
         else:
