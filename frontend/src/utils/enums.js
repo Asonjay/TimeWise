@@ -1,7 +1,7 @@
 export const ROUTES = {
-	GENERATOR: "Generator",
-	PROFILE: "Profile",
-	CHATBOT: "Chatbot",
+	GENERATOR: "generator",
+	PROFILE: "profile",
+	CHATBOT: "chatbot",
 };
 
 export const MESSAGE_TYPE = {
@@ -9,5 +9,7 @@ export const MESSAGE_TYPE = {
 	IMAGE: "image",
 	OPTION: "option",
 	TABLE: "table",
-	CHART: "chart",
+	PIE_CHART: "piechart",
+	LINE_CHART: "linechart",
+	DASHBOARD: "dashboard",
 };

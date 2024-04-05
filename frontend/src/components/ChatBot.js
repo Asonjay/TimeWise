@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
 	MainContainer,
 	ChatContainer,
@@ -23,7 +23,7 @@ const _WELCOME_MESSAGE = {
 	},
 };
 
-function Chatbot({ setPage }) {
+function Chatbot() {
 	const [messages, setMessages] = useState([_WELCOME_MESSAGE]);
 	// const [messageType, setMessageType] = useState(MESSAGE_TYPE.TEXT);
 	const [isTyping, setIsTyping] = useState(false);
@@ -46,7 +46,7 @@ function Chatbot({ setPage }) {
 		await sendMessageToLLM(newMessages, setMessages, setIsTyping);
 	};
 
-	console.log("messages", messages);
+	console.log("Messages", messages);
 	console.log("--------------------------------------");
 
 	return (

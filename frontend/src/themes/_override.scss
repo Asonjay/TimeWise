@@ -1,8 +1,12 @@
 /* Overriden Variables */
 
-// 1. Default font family
+// 1. Defaults
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital@0;1&display=swap");
 $default-font-family: "Source Sans 3", sans-serif;
+.cs-message-list__scroll-wrapper > .cs-message,
+.cs-message-list__scroll-wrapper > .cs-message-group {
+	max-width: 100% !important;
+}
 
 // 2. Conversation Header Overrides
 $color-primary: #c6e3fa !default;

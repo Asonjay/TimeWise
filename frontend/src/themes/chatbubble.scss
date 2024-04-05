@@ -1,11 +1,59 @@
-/* Responsive Table Theme
-*  Modified from: https://codepen.io/asonjay/pen/KKYZrXm
-*/
 $baseColor: #398b93;
 $borderRadius: 5px;
 $imageBig: 100px;
 $imageSmall: 60px;
 $padding: 3px;
+
+/* ------------------------------------------------------------------------
+*  Nivo Chart Theme 
+*/
+.piechart-container {
+	height: 250px;
+	width: 450px;
+
+	border: 1px solid darken($baseColor, 5%);
+	border-radius: $borderRadius;
+	box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+	max-width: calc(100%);
+	overflow: hidden;
+	font-size: 1rem;
+	background-color: white;
+	margin-top: 0.6em;
+	margin-bottom: 0.6em;
+}
+
+.linechart-container {
+	height: 400px;
+	width: 600px;
+
+	border: 1px solid darken($baseColor, 5%);
+	border-radius: $borderRadius;
+	box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+	max-width: calc(100%);
+	overflow: hidden;
+	font-size: 1rem;
+	background-color: white;
+	margin-top: 0.6em;
+	margin-bottom: 0.6em;
+}
+
+.dashboard-container {
+	max-width: calc(100%);
+	margin-top: 0.6em;
+	margin-bottom: 0.6em;
+
+	display: inline-flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+}
+
+/* ------------------------------------------------------------------------
+*  Responsive Table Theme
+*  Modified from: https://codepen.io/asonjay/pen/KKYZrXm
+*/
 
 .header {
 	background-color: darken($baseColor, 5%);
@@ -27,10 +75,12 @@ $padding: 3px;
 	border-radius: $borderRadius;
 	box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
 	max-width: calc(100%);
-	margin: 1em auto;
+	// margin: 1em auto;
 	overflow: hidden;
 	// width: 600px;
 	font-size: 1rem;
+	margin-top: 0.6em;
+	margin-bottom: 0.6em;
 }
 
 table {

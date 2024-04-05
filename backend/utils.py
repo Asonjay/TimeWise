@@ -1,6 +1,7 @@
 import os
 import json
 import yaml
+from pprint import pformat
 
 
 _color_string = {
@@ -16,11 +17,11 @@ _color_string = {
     "END": "\033[0m"
 }
 
-def print_with_color(text, color:str, type:str="text"):
+def print_with_color(obj, color:str, type:str="text"):
     if type == "json":
-        print(f"{_color_string[color]}{json.dumps(text, indent=2)}{_color_string['END']}")
+        print(f"{_color_string[color]}{pformat(obj, indent=2)}{_color_string['END']}")
     else:
-        print(f"{_color_string[color]}{text}{_color_string['END']}")
+        print(f"{_color_string[color]}{obj}{_color_string['END']}")
 
 
 def load_config(config_path="./config.yaml", api_key_path="./api_key.yaml"):

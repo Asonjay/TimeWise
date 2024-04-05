@@ -1,10 +1,8 @@
 import axios from "axios";
 
-import { MESSAGE_TYPE } from "./enums";
-
 function _parseResponse(response) {
-	console.log("Receiving <- ");
-	console.log(response.data);
+	// console.log("Receiving <- ");
+	// console.log(response.data);
 	const message = response.data.message
 		.replace(/\n/g, "")
 		.replace(/\\\\/g, "\\");
