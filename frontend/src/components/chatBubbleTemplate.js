@@ -1,6 +1,6 @@
 import { Message, TypingIndicator } from "@chatscope/chat-ui-kit-react";
 import { MESSAGE_TYPE } from "../utils/enums";
-import { PieChart, LineChart } from "./nivoCharts";
+import { PieChart, LineChart, CalendarChart, RadarChart } from "./nivoCharts";
 
 const _getTableTemplate = (i, message) => {
 	const tableData = message.message;
@@ -48,39 +48,54 @@ const _getTableTemplate = (i, message) => {
 	);
 };
 
-const _getNivoChartsTemplate = (i, message, type, isDashboard) => {
+const _getNivoChartsTemplate = (i, message, type) => {
 	// const chartData = message.message;
 	const chartData = message.message;
 	let content;
-	if (type === "piechart") {
-		content = (
-			<div className="piechart-container">
-				<PieChart data={chartData} />
-			</div>
-		);
-	} else if (type === "linechart") {
-		content = (
-			<div className="linechart-container">
-				<LineChart data={chartData} />
-			</div>
-		);
+	switch (type) {
+		case MESSAGE_TYPE.PIE_CHART:
+			content = (
+				<div className="piechart-container">
+					<PieChart data={chartData} />
+				</div>
+			);
+			break;
+		case MESSAGE_TYPE.LINE_CHART:
+			content = (
+				<div className="linechart-container">
+					<LineChart data={chartData} />
+				</div>
+			);
+			break;
+		case MESSAGE_TYPE.CALENDAR_CHART:
+			content = (
+				<div className="calendarchart-container">
+					<CalendarChart data={chartData} />
+				</div>
+			);
+			break;
+		case MESSAGE_TYPE.RADAR_CHART:
+			content = (
+				<div className="radarchart-container">
+					<RadarChart data={chartData} />
+				</div>
+			);
+			break;
+		default:
+			break;
 	}
 
-	if (isDashboard) {
-		return content;
-	} else {
-		return (
-			<Message
-				key={i}
-				model={{
-					sender: "GPT",
-					direction: "incoming",
-					position: "single",
-					payload: <Message.CustomContent>{content}</Message.CustomContent>,
-				}}
-			></Message>
-		);
-	}
+	return (
+		<Message
+			key={i}
+			model={{
+				sender: "GPT",
+				direction: "incoming",
+				position: "single",
+				payload: <Message.CustomContent>{content}</Message.CustomContent>,
+			}}
+		></Message>
+	);
 };
 
 const _getDashboardTemplate = (i, message) => {
@@ -119,7 +134,7 @@ const _getDashboardTemplate = (i, message) => {
 };
 
 export const chatBubbleTemplate = (message, i) => {
-	// console.log("Raw Message", message);
+	console.log("Raw Message", message);
 	switch (message.type) {
 		case MESSAGE_TYPE.TEXT:
 			return <Message key={i} model={message.content} />;
@@ -130,11 +145,12 @@ export const chatBubbleTemplate = (message, i) => {
 		case MESSAGE_TYPE.TABLE:
 			return _getTableTemplate(i, message.content);
 		case MESSAGE_TYPE.PIE_CHART:
-			return _getNivoChartsTemplate(i, message.content, "piechart", false);
 		case MESSAGE_TYPE.LINE_CHART:
-			return _getNivoChartsTemplate(i, message.content, "linechart", false);
-		case MESSAGE_TYPE.DASHBOARD:
-			return _getDashboardTemplate(i, message.content);
+		case MESSAGE_TYPE.CALENDAR_CHART:
+		case MESSAGE_TYPE.RADAR_CHART:
+			return _getNivoChartsTemplate(i, message, message.type);
+		// case MESSAGE_TYPE.DASHBOARD:
+		// 	return _getDashboardTemplate(i, message.content);
 		default:
 			return <></>;
 	}

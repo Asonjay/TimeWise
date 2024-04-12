@@ -1,5 +1,11 @@
 import { ResponsivePie } from "@nivo/pie";
 import { ResponsiveLine } from "@nivo/line";
+import { ResponsiveCalendar } from "@nivo/calendar";
+import { ResponsiveRadar } from "@nivo/radar";
+
+// Constants
+const CALENDAR_FROM_DATE = "2021-01-02";
+const CALENDAR_TO_DATE = "2021-12-31";
 
 export const PieChart = ({ data /* see data tab */ }) => (
 	<ResponsivePie
@@ -9,7 +15,7 @@ export const PieChart = ({ data /* see data tab */ }) => (
 				fontSize: "14px",
 			},
 		}}
-		data={data}
+		data={data.content}
 		margin={{ top: 30, right: 60, bottom: 30, left: 60 }}
 		innerRadius={0.5}
 		padAngle={0.7}
@@ -132,7 +138,13 @@ export const PieChart = ({ data /* see data tab */ }) => (
 
 export const LineChart = ({ data /* see data tab */ }) => (
 	<ResponsiveLine
-		data={data}
+		data={data.content}
+		theme={{
+			text: {
+				fontFamily: "Source Sans 3, sans-serif",
+				fontSize: "14px",
+			},
+		}}
 		margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
 		xScale={{ type: "point" }}
 		yScale={{
@@ -198,3 +210,81 @@ export const LineChart = ({ data /* see data tab */ }) => (
 		]}
 	/>
 );
+
+export const CalendarChart = ({ data /* see data tab */ }) => {
+	return (
+		<ResponsiveCalendar
+			data={data}
+			theme={{
+				text: {
+					fontFamily: "Source Sans 3, sans-serif",
+					fontSize: "14px",
+				},
+			}}
+			from={CALENDAR_FROM_DATE}
+			to={CALENDAR_TO_DATE}
+			emptyColor="#eeeeee"
+			colors={["#61cdbb", "#97e3d5", "#e8c1a0", "#f47560"]}
+			minValue="auto"
+			margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
+			monthBorderColor="#ffffff"
+			dayBorderWidth={1}
+			dayBorderColor="#ffffff"
+			legends={[
+				{
+					anchor: "bottom-right",
+					direction: "row",
+					translateY: 36,
+					itemCount: 4,
+					itemWidth: 42,
+					itemHeight: 36,
+					itemsSpacing: 14,
+					itemDirection: "right-to-left",
+				},
+			]}
+		/>
+	);
+};
+
+export const RadarChart = ({ data /* see data tab */ }) => {
+	data;
+	return (
+		<ResponsiveRadar
+			data={data}
+			theme={{
+				text: {
+					fontFamily: "Source Sans 3, sans-serif",
+					fontSize: "14px",
+				},
+			}}
+			keys={["chardonay", "carmenere", "syrah"]}
+			indexBy="taste"
+			valueFormat=">-.2f"
+			margin={{ top: 70, right: 80, bottom: 40, left: 80 }}
+			borderColor={{ from: "color", modifiers: [] }}
+			dotSize={10}
+			dotColor={{ theme: "background" }}
+			dotBorderWidth={2}
+			gridLabelFontColor="#000"
+			colors={{ scheme: "nivo" }}
+			blendMode="multiply"
+			motionConfig="wobbly"
+			legends={[
+				{
+					text: {
+						fill: "#000",
+					},
+					anchor: "top-left",
+					direction: "column",
+					translateX: -50,
+					translateY: -40,
+					itemWidth: 80,
+					itemHeight: 20,
+					itemTextColor: "#999",
+					symbolSize: 12,
+					symbolShape: "circle",
+				},
+			]}
+		/>
+	);
+};

@@ -11,5 +11,7 @@ export const MESSAGE_TYPE = {
 	TABLE: "table",
 	PIE_CHART: "piechart",
 	LINE_CHART: "linechart",
-	DASHBOARD: "dashboard",
+	CALENDAR_CHART: "calendarchart",
+	RADAR_CHART: "radarchart",
+	// DASHBOARD: "dashboard",
 };

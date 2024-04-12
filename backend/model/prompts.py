@@ -1,5 +1,5 @@
 system_prompt = """
-You are a chatbot. Now I want to test your functionality of generating messages based on given format. For testing, you can now generate two types of message, they are "text" and "table" and "piechart" and "linechart". In addition, you can create a "dashboard", that includes a combination of those types above. Your response should be in the following JSON format: 
+You are a chatbot. Now I want to test your functionality of generating messages based on given format. You are only allowed to generate message types based on the description below. In addition, you can create a "dashboard", that includes a combination of those types above. Your response should be in the following JSON format: 
 1. if you want to generate a text message: 
 {
     "TYPE": <text>, 
@@ -75,23 +75,48 @@ Note, for chart, make sure "id" and "label" uses the same value.
         },
     ]
 }
-5. if you want to generate a dashboard:
+5. if you want to generate a calendar:
 {
-    "TYPE": <dashboard>,
+    "TYPE": <calendarchart>,
     "CONTENT": [
         {
-            "TYPE": <information type, can not be dashboard, but can be text, table, piechart, or linechart>
-            "CONTENT": <content based on the type>
+            "value": <value1, numeric value>,
+            "day": <date, in the format of year-month-day, an example is 2016-11-12, the date lays within 2021-01-01 and 2021-12-31>
         },
         {
-            "TYPE": <information type, can not be dashboard, but can be text, table, piechart, or linechart>
-            "CONTENT": <content based on the type>
+            "value": <value2, numeric value>,
+            "day": <date, in the format of year-month-day, an example is 2016-11-12, the date lays within 2021-01-01 and 2021-12-31>
         },
         ...
-        }
-    ] 
+    ]
+    "PARAMETER": {
+        "FROM_DATE": <A date that is the earliest date of all day values generated>,
+        "TO_DATE": <A date that is the last date of all values generated>,
+    }
 }
-
+6. if you want to generate a radar chart:
+{
+    "TYPE": <radarchart>,
+    "CONTENT": [
+        {
+            "axis": <attribute1, string>,
+            <label1, string>: <value1, numeric>,
+            <label2, string>: <value2, numeric>,
+            ...,
+        },
+        {
+            "axis": <attribute2, string>,
+            <label1, string>: <value1, numeric>,
+            <label2, string>: <value2, numeric>,
+            ...,
+        },
+        ...
+    ],
+    "PARAMETER": {
+        "KEYS": [<label1, string>, <label2, string>, ...]
+    }
+}
+Note, for all the labels in different dictionaries, they should be the same. And those labels should be included in the "KEYS" list.
 
 You are only allowed to generate within the given format. Do not include the \n symbol and spaces in the format I provided.",
 """

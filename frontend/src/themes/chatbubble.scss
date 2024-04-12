@@ -37,17 +37,34 @@ $padding: 3px;
 	margin-bottom: 0.6em;
 }
 
-.dashboard-container {
+.calendarchart-container {
+	height: 200px;
+	width: 700px;
+
+	border: 1px solid darken($baseColor, 5%);
+	border-radius: $borderRadius;
+	box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
 	max-width: calc(100%);
+	overflow: hidden;
+	font-size: 1rem;
+	background-color: white;
 	margin-top: 0.6em;
 	margin-bottom: 0.6em;
+}
 
-	display: inline-flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-	height: 100%;
+.radarchart-container {
+	height: 250px;
+	width: 450px;
+
+	border: 1px solid darken($baseColor, 5%);
+	border-radius: $borderRadius;
+	box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+	max-width: calc(100%);
+	overflow: hidden;
+	font-size: 1rem;
+	background-color: white;
+	margin-top: 0.6em;
+	margin-bottom: 0.6em;
 }
 
 /* ------------------------------------------------------------------------

@@ -22,7 +22,6 @@ class BaseModel:
     def get_response(self, messages):
         pass
     
-    
 
 class OpenAIModel(BaseModel):
     def __init__(self, api_key: str, model: str, temperature: float, max_tokens: int):
