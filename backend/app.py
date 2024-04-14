@@ -10,7 +10,7 @@ import pdb
 os.environ['root_dir'] = os.path.dirname(os.path.abspath(__file__))
 
 app = Flask(__name__)
-CORS(app, origins=['http://localhost:3000'])  # Allow all origins
+CORS(app)  # Allow all origins
 
 config = load_config()
 if config['PLATFORM'] == 'OPENAI':
@@ -28,6 +28,7 @@ def index():
 @app.route('/llm', methods=['POST'])
 def send_message_to_LLM():
     messages = request.get_json()
+    print(messages)
     try:
         response = model.get_response(messages)
         # pdb.set_trace()
