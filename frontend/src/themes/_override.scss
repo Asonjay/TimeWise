@@ -10,7 +10,7 @@ $default-font-family: "Source Sans 3", sans-serif;
 
 // 2. Conversation Header Overrides
 $color-primary: #c6e3fa !default;
-$color-primary-light: #2774ae !default;
+$color-primary-light: rgb(248, 248, 248) !default;
 $color-primary-dark: #6ea9d7 !default;
 $color-primary-dark: #6eaad8 !default;
 
@@ -19,7 +19,7 @@ $color-secondary-light: #c2f9f9 !default;
 $color-secondary-dark: #64d3d3 !default;
 
 .cs-conversation-header {
-	padding: 0.2em 0.9em !important;
+	padding: 0.4em 1em !important;
 	border: solid #d0d0d0;
 	border-width: 0px 0px 1px 0px;
 }
@@ -31,7 +31,7 @@ $color-secondary-dark: #64d3d3 !default;
 	white-space: nowrap;
 	font-weight: bold;
 	text-align: center;
-	color: #ffffff;
+	color: #000000;
 }
 
 // 3. Message List
@@ -75,6 +75,7 @@ $color-secondary-dark: #64d3d3 !default;
 // 5. Message Input
 .cs-message-input {
 	border-top: solid 1px #d0d0d0 !important;
+	background-color: $color-primary-light !important;
 }
 
 // 6. Animations

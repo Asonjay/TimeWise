@@ -1,6 +1,7 @@
-import { Message, TypingIndicator } from "@chatscope/chat-ui-kit-react";
+import { Message, Avatar } from "@chatscope/chat-ui-kit-react";
 import { MESSAGE_TYPE } from "../utils/enums";
 import { PieChart, LineChart, CalendarChart, RadarChart } from "./nivoCharts";
+import RobotIcon from "../assets/robot.jpg";
 
 const _getTableTemplate = (i, message) => {
 	const tableData = message.message;
@@ -44,13 +45,16 @@ const _getTableTemplate = (i, message) => {
 					</Message.CustomContent>
 				),
 			}}
-		></Message>
+		>
+			<Avatar src={RobotIcon} />
+		</Message>
 	);
 };
 
 const _getNivoChartsTemplate = (i, message, type) => {
-	// const chartData = message.message;
 	const chartData = message.message;
+	// debugger;
+	const chartParam = message.parameter;
 	let content;
 	switch (type) {
 		case MESSAGE_TYPE.PIE_CHART:
@@ -70,14 +74,14 @@ const _getNivoChartsTemplate = (i, message, type) => {
 		case MESSAGE_TYPE.CALENDAR_CHART:
 			content = (
 				<div className="calendarchart-container">
-					<CalendarChart data={chartData} />
+					<CalendarChart data={chartData} parameter={chartParam} />
 				</div>
 			);
 			break;
 		case MESSAGE_TYPE.RADAR_CHART:
 			content = (
 				<div className="radarchart-container">
-					<RadarChart data={chartData} />
+					<RadarChart data={chartData} parameter={chartParam} />
 				</div>
 			);
 			break;
@@ -94,50 +98,62 @@ const _getNivoChartsTemplate = (i, message, type) => {
 				position: "single",
 				payload: <Message.CustomContent>{content}</Message.CustomContent>,
 			}}
-		></Message>
+		>
+			<Avatar src={RobotIcon} />
+		</Message>
 	);
 };
 
-const _getDashboardTemplate = (i, message) => {
-	const dashboardData = message.message;
+// const _getDashboardTemplate = (i, message) => {
+// 	const dashboardData = message.message;
 
-	return (
-		<Message
-			key={i}
-			model={{
-				sender: "GPT",
-				direction: "incoming",
-				position: "single",
-				payload: (
-					<Message.CustomContent>
-						<div className="dashboard-container">
-							{dashboardData.map((item) => {
-								const dummyObj = {
-									message: item,
-								};
-								// debugger;
-								let template = _getNivoChartsTemplate(
-									i,
-									dummyObj,
-									item.TYPE,
-									true
-								);
-								console.log("template", template);
-								return template;
-							})}
-						</div>
-					</Message.CustomContent>
-				),
-			}}
-		></Message>
-	);
-};
+// 	return (
+// 		<Message
+// 			key={i}
+// 			model={{
+// 				sender: "GPT",
+// 				direction: "incoming",
+// 				position: "single",
+// 				payload: (
+// 					<Message.CustomContent>
+// 						<div className="dashboard-container">
+// 							{dashboardData.map((item) => {
+// 								const dummyObj = {
+// 									message: item,
+// 								};
+// 								// debugger;
+// 								let template = _getNivoChartsTemplate(
+// 									i,
+// 									dummyObj,
+// 									item.TYPE,
+// 									true
+// 								);
+// 								console.log("template", template);
+// 								return template;
+// 							})}
+// 						</div>
+// 					</Message.CustomContent>
+// 				),
+// 			}}
+// 		>
+// 			<Avatar src={RobotIcon} />
+// 		</Message>
+// 	);
+// };
 
-export const chatBubbleTemplate = (message, i) => {
+export const getChatBubbleTemplate = (message, i) => {
 	console.log("Raw Message", message);
 	switch (message.type) {
 		case MESSAGE_TYPE.TEXT:
-			return <Message key={i} model={message.content} />;
+			if (message.content.sender === "user") {
+				return <Message key={i} model={message.content}></Message>;
+			} else {
+				return (
+					<Message key={i} model={message.content}>
+						<Avatar src={RobotIcon} />
+					</Message>
+				);
+			}
 		case MESSAGE_TYPE.IMAGE:
 			return <></>;
 		case MESSAGE_TYPE.OPTION:
@@ -148,14 +164,10 @@ export const chatBubbleTemplate = (message, i) => {
 		case MESSAGE_TYPE.LINE_CHART:
 		case MESSAGE_TYPE.CALENDAR_CHART:
 		case MESSAGE_TYPE.RADAR_CHART:
-			return _getNivoChartsTemplate(i, message, message.type);
+			return _getNivoChartsTemplate(i, message.content, message.type);
 		// case MESSAGE_TYPE.DASHBOARD:
 		// 	return _getDashboardTemplate(i, message.content);
 		default:
 			return <></>;
 	}
-};
-
-export const typingIndicatorTemplate = () => {
-	return <TypingIndicator content="TimeWise is thinking" />;
 };

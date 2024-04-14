@@ -12,9 +12,5 @@
 	"action": {
 		"default_popup": "index.html",
 		"default_title": "Open the popup"
-	},
-	"host_permissions": [],
-	"background": {
-		"service_worker": "background.js"
 	}
 }

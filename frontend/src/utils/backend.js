@@ -8,6 +8,12 @@ function _parseResponse(response) {
 		.replace(/\\\\/g, "\\");
 
 	const jsonMessage = JSON.parse(message);
+	let parameter;
+	try {
+		parameter = jsonMessage.PARAMETER;
+	} catch (error) {
+		parameter = null;
+	}
 
 	return {
 		type: jsonMessage.TYPE,
@@ -16,6 +22,7 @@ function _parseResponse(response) {
 			sender: "model",
 			position: "single",
 			direction: "incoming",
+			parameter: parameter,
 		},
 	};
 }

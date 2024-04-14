@@ -3,11 +3,7 @@ import { ResponsiveLine } from "@nivo/line";
 import { ResponsiveCalendar } from "@nivo/calendar";
 import { ResponsiveRadar } from "@nivo/radar";
 
-// Constants
-const CALENDAR_FROM_DATE = "2021-01-02";
-const CALENDAR_TO_DATE = "2021-12-31";
-
-export const PieChart = ({ data /* see data tab */ }) => (
+export const PieChart = ({ data }) => (
 	<ResponsivePie
 		theme={{
 			text: {
@@ -15,7 +11,7 @@ export const PieChart = ({ data /* see data tab */ }) => (
 				fontSize: "14px",
 			},
 		}}
-		data={data.content}
+		data={data}
 		margin={{ top: 30, right: 60, bottom: 30, left: 60 }}
 		innerRadius={0.5}
 		padAngle={0.7}
@@ -136,9 +132,9 @@ export const PieChart = ({ data /* see data tab */ }) => (
 	/>
 );
 
-export const LineChart = ({ data /* see data tab */ }) => (
+export const LineChart = ({ data }) => (
 	<ResponsiveLine
-		data={data.content}
+		data={data}
 		theme={{
 			text: {
 				fontFamily: "Source Sans 3, sans-serif",
@@ -211,7 +207,7 @@ export const LineChart = ({ data /* see data tab */ }) => (
 	/>
 );
 
-export const CalendarChart = ({ data /* see data tab */ }) => {
+export const CalendarChart = ({ data, parameter }) => {
 	return (
 		<ResponsiveCalendar
 			data={data}
@@ -221,8 +217,8 @@ export const CalendarChart = ({ data /* see data tab */ }) => {
 					fontSize: "14px",
 				},
 			}}
-			from={CALENDAR_FROM_DATE}
-			to={CALENDAR_TO_DATE}
+			from={parameter.FROM_DATE}
+			to={parameter.TO_DATE}
 			emptyColor="#eeeeee"
 			colors={["#61cdbb", "#97e3d5", "#e8c1a0", "#f47560"]}
 			minValue="auto"
@@ -246,45 +242,41 @@ export const CalendarChart = ({ data /* see data tab */ }) => {
 	);
 };
 
-export const RadarChart = ({ data /* see data tab */ }) => {
-	data;
-	return (
-		<ResponsiveRadar
-			data={data}
-			theme={{
-				text: {
-					fontFamily: "Source Sans 3, sans-serif",
-					fontSize: "14px",
-				},
-			}}
-			keys={["chardonay", "carmenere", "syrah"]}
-			indexBy="taste"
-			valueFormat=">-.2f"
-			margin={{ top: 70, right: 80, bottom: 40, left: 80 }}
-			borderColor={{ from: "color", modifiers: [] }}
-			dotSize={10}
-			dotColor={{ theme: "background" }}
-			dotBorderWidth={2}
-			gridLabelFontColor="#000"
-			colors={{ scheme: "nivo" }}
-			blendMode="multiply"
-			motionConfig="wobbly"
-			legends={[
-				{
-					text: {
-						fill: "#000",
+export const RadarChart = ({ data, parameter }) => (
+	<ResponsiveRadar
+		data={data}
+		keys={parameter.KEYS}
+		indexBy="taste"
+		valueFormat=" >-.2f"
+		margin={{ top: 70, right: 80, bottom: 40, left: 80 }}
+		borderColor={{ from: "color" }}
+		gridLabelOffset={15}
+		dotSize={10}
+		dotColor={{ theme: "background" }}
+		dotBorderWidth={2}
+		colors={{ scheme: "nivo" }}
+		blendMode="multiply"
+		motionConfig="wobbly"
+		legends={[
+			{
+				anchor: "top-left",
+				direction: "column",
+				translateX: -50,
+				translateY: -40,
+				itemWidth: 80,
+				itemHeight: 20,
+				itemTextColor: "#999",
+				symbolSize: 12,
+				symbolShape: "circle",
+				effects: [
+					{
+						on: "hover",
+						style: {
+							itemTextColor: "#000",
+						},
 					},
-					anchor: "top-left",
-					direction: "column",
-					translateX: -50,
-					translateY: -40,
-					itemWidth: 80,
-					itemHeight: 20,
-					itemTextColor: "#999",
-					symbolSize: 12,
-					symbolShape: "circle",
-				},
-			]}
-		/>
-	);
-};
+				],
+			},
+		]}
+	/>
+);

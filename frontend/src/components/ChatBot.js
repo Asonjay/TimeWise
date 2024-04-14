@@ -1,30 +1,22 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
 	MainContainer,
 	ChatContainer,
 	ConversationHeader,
+	InfoButton,
 	MessageList,
 	MessageInput,
 	TypingIndicator,
 } from "@chatscope/chat-ui-kit-react";
+import { TypingHeader } from "./TypingHeader";
 import { sendMessageToLLM } from "../utils/backend";
+import { getChatBubbleTemplate } from "./getChatBubbleTemplate";
 import { MESSAGE_TYPE } from "../utils/enums";
-import { chatBubbleTemplate } from "./chatBubbleTemplate";
-
-const _CONTENT_HEADER = "🤖TimeWise🤖";
-const _WELCOME_MESSAGE = {
-	type: MESSAGE_TYPE.TEXT,
-	content: {
-		message: "Hello, this is TimeWise! Ask me anything!",
-		sender: "GPT",
-		direction: "incoming",
-		position: "single",
-	},
-};
+import { WELCOME_MESSAGE } from "./CONSTANTS";
 
 function Chatbot() {
-	const [messages, setMessages] = useState([_WELCOME_MESSAGE]);
+	const [messages, setMessages] = useState([WELCOME_MESSAGE]);
 	// const [messageType, setMessageType] = useState(MESSAGE_TYPE.TEXT);
 	const [isTyping, setIsTyping] = useState(false);
 
@@ -40,7 +32,6 @@ function Chatbot() {
 		};
 
 		const newMessages = [...messages, newMessage];
-		// const newMessageTypes = [...messageType, MESSAGE_TYPE.TEXT];
 		setMessages(newMessages);
 		setIsTyping(true);
 		await sendMessageToLLM(newMessages, setMessages, setIsTyping);
@@ -55,7 +46,13 @@ function Chatbot() {
 				<MainContainer>
 					<ChatContainer>
 						<ConversationHeader>
-							<ConversationHeader.Content userName={_CONTENT_HEADER} />
+							<ConversationHeader.Back />
+							<ConversationHeader.Content>
+								<TypingHeader />
+							</ConversationHeader.Content>
+							<ConversationHeader.Actions>
+								<InfoButton title="Show Info" />
+							</ConversationHeader.Actions>
 						</ConversationHeader>
 						<MessageList
 							scrollBehavior="auto"
@@ -67,7 +64,7 @@ function Chatbot() {
 							autoScrollToBottom={true}
 						>
 							{messages.map((message, i) => {
-								return chatBubbleTemplate(message, i);
+								return getChatBubbleTemplate(message, i);
 							})}
 						</MessageList>
 						<MessageInput

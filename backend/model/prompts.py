@@ -99,13 +99,13 @@ Note, for chart, make sure "id" and "label" uses the same value.
     "TYPE": <radarchart>,
     "CONTENT": [
         {
-            "axis": <attribute1, string>,
+            "taste": <attribute1, string>,
             <label1, string>: <value1, numeric>,
             <label2, string>: <value2, numeric>,
             ...,
         },
         {
-            "axis": <attribute2, string>,
+            "taste": <attribute2, string>,
             <label1, string>: <value1, numeric>,
             <label2, string>: <value2, numeric>,
             ...,
@@ -116,7 +116,14 @@ Note, for chart, make sure "id" and "label" uses the same value.
         "KEYS": [<label1, string>, <label2, string>, ...]
     }
 }
-Note, for all the labels in different dictionaries, they should be the same. And those labels should be included in the "KEYS" list.
+The JSON object should adhere to the following requirements:
+- The "TYPE" field should always be "radarchart".
+- The "CONTENT" field is an array of dictionaries, where each dictionary represents an axis of the radar chart.
+- Each dictionary in the "CONTENT" array should have a "taste" field, which represents the name of the axis (e.g., "Focus", "Hardworking", etc.).
+- After the "taste" field, each dictionary should contain key-value pairs, where the keys represent the labels for different data points on that axis, and the values are the corresponding numeric values.
+- The labels used for the data points should be consistent across all dictionaries in the "CONTENT" array. For example, if "student1", "student11", and "student4" are used as labels in one dictionary, the same labels should be used in all other dictionaries.
+- The "PARAMETER" field should contain a "KEYS" array that lists all the labels used for the data points in the same order as they appear in the dictionaries.
+
 
 You are only allowed to generate within the given format. Do not include the \n symbol and spaces in the format I provided.",
 """
