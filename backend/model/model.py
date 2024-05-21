@@ -5,7 +5,7 @@ import json
 import os
 
 from utils import print_with_color
-from model.prompts import system_prompt
+from model.prompts import system_prompt, testing_prompt
 
 import pdb
 
@@ -39,7 +39,6 @@ class OpenAIModel(BaseModel):
         model_pricing = pricing_data['OPENAI'][self.model]
         print_with_color(f"[COST: ${input_tokens / 1000 * model_pricing['input'] + output_tokens / 1000 * model_pricing['output']:.5f}, INPUT: {input_tokens}, OUTPUT: {output_tokens}]", "YELLOW")
     
-    # TODO: modify for multiple format
     def _parse_response(self, response: str) -> dict:
         return {
             "message": response
@@ -50,7 +49,7 @@ class OpenAIModel(BaseModel):
         content = [
             {
                 "type": "text",
-                "text": messages['messages'][-1]['content']['message']
+                "text": messages['messages'][-1]['content']
             }
         ]
         headers = {
@@ -62,7 +61,8 @@ class OpenAIModel(BaseModel):
             "messages": [
                 {
                     "role": "system",
-                    "content": system_prompt
+                    # "content": system_prompt
+                    "content": testing_prompt
                 },
                 {
                     "role": "user",
@@ -78,5 +78,5 @@ class OpenAIModel(BaseModel):
             self._get_pricing(response['usage']["prompt_tokens"], response['usage']["completion_tokens"])
         else:
             return response["error"]["message"]
-        return self._parse_response(response["choices"][0]["message"]["content"])
+        return response["choices"][0]["message"]["content"]
     

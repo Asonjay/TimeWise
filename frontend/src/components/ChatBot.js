@@ -13,22 +13,21 @@ import { TypingHeader } from "./TypingHeader";
 import { sendMessageToLLM } from "../utils/backend";
 import { getChatBubbleTemplate } from "./getChatBubbleTemplate";
 import { MESSAGE_TYPE } from "../utils/enums";
-import { WELCOME_MESSAGE } from "./CONSTANTS";
+import { WELCOME_MESSAGE, ADDITIONAL_MESSAGE } from "./const";
 
 function Chatbot() {
-	const [messages, setMessages] = useState([WELCOME_MESSAGE]);
+	const [messages, setMessages] = useState([
+		// WELCOME_MESSAGE,
+		ADDITIONAL_MESSAGE,
+	]);
 	// const [messageType, setMessageType] = useState(MESSAGE_TYPE.TEXT);
 	const [isTyping, setIsTyping] = useState(false);
 
 	const handleSend = async (message) => {
 		const newMessage = {
 			type: MESSAGE_TYPE.TEXT,
-			content: {
-				message,
-				sender: "user",
-				direction: "outgoing",
-				position: "single",
-			},
+			content: message,
+			sender: "user",
 		};
 
 		const newMessages = [...messages, newMessage];
@@ -58,7 +57,7 @@ function Chatbot() {
 							scrollBehavior="auto"
 							typingIndicator={
 								isTyping ? (
-									<TypingIndicator content="TimeWise is thinking" />
+									<TypingIndicator content="TimeWise is thinking🤔" />
 								) : null
 							}
 							autoScrollToBottom={true}

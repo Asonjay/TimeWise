@@ -2,28 +2,17 @@ import axios from "axios";
 
 function _parseResponse(response) {
 	// console.log("Receiving <- ");
-	// console.log(response.data);
-	const message = response.data.message
-		.replace(/\n/g, "")
-		.replace(/\\\\/g, "\\");
+	console.log(response);
+	const message = response.data.replace(/\n/g, "").replace(/\\\\/g, "\\");
 
 	const jsonMessage = JSON.parse(message);
-	let parameter;
-	try {
-		parameter = jsonMessage.PARAMETER;
-	} catch (error) {
-		parameter = null;
-	}
 
 	return {
 		type: jsonMessage.TYPE,
-		content: {
-			message: jsonMessage.CONTENT,
-			sender: "model",
-			position: "single",
-			direction: "incoming",
-			parameter: parameter,
-		},
+		content: jsonMessage.CONTENT,
+		sender: "model",
+		parameter: jsonMessage.PARAMETER ? jsonMessage.PARAMETER : null,
+		separator: jsonMessage.SEPARATOR ? jsonMessage.SEPARATOR : null,
 	};
 }
 

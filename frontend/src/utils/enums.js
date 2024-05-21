@@ -13,5 +13,7 @@ export const MESSAGE_TYPE = {
 	LINE_CHART: "linechart",
 	CALENDAR_CHART: "calendarchart",
 	RADAR_CHART: "radarchart",
+	BAR_CHART: "barchart",
+	SEPARATOR: "separator",
 	// DASHBOARD: "dashboard",
 };

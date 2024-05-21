@@ -7,6 +7,10 @@
 		"gpt-4": {
 			"input": 0.03,
 			"output": 0.06
+		},
+		"gpt-4o": {
+			"input": 0.005,
+			"output": 0.015
 		}
 	}
 }

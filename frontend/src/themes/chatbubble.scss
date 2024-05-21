@@ -1,15 +1,30 @@
+/* ------------------------------------------------------------------------
+*  Constants
+*/
+
 $baseColor: #398b93;
 $borderRadius: 5px;
 $imageBig: 100px;
 $imageSmall: 60px;
 $padding: 3px;
 
+$piechart-height: 250px;
+$piechart-width: 450px;
+$linechart-height: 400px;
+$linechart-width: 600px;
+$calendarchart-height: 200px;
+$calendarchart-width: 680px;
+$radarchart-height: 400px;
+$radarchart-width: 500px;
+$barchart-height: 300px;
+$barchart-width: 550px;
+
 /* ------------------------------------------------------------------------
 *  Nivo Chart Theme 
 */
 .piechart-container {
-	height: 250px;
-	width: 450px;
+	height: $piechart-height;
+	width: $piechart-width;
 
 	border: 1px solid darken($baseColor, 5%);
 	border-radius: $borderRadius;
@@ -20,11 +35,15 @@ $padding: 3px;
 	background-color: white;
 	margin-top: 0.6em;
 	margin-bottom: 0.6em;
+}
+.piechart-text {
+	width: $piechart-width;
+	white-space: wrap;
 }
 
 .linechart-container {
-	height: 400px;
-	width: 600px;
+	height: $linechart-height;
+	width: $linechart-width;
 
 	border: 1px solid darken($baseColor, 5%);
 	border-radius: $borderRadius;
@@ -35,11 +54,15 @@ $padding: 3px;
 	background-color: white;
 	margin-top: 0.6em;
 	margin-bottom: 0.6em;
+}
+.linechart-text {
+	width: $linechart-width;
+	white-space: wrap;
 }
 
 .calendarchart-container {
-	height: 200px;
-	width: 680px;
+	height: $calendarchart-height;
+	width: $barchart-width;
 
 	border: 1px solid darken($baseColor, 5%);
 	border-radius: $borderRadius;
@@ -51,10 +74,14 @@ $padding: 3px;
 	margin-top: 0.6em;
 	margin-bottom: 0.6em;
 }
+.calendarchart-text {
+	width: $calendarchart-width;
+	white-space: wrap;
+}
 
 .radarchart-container {
-	height: 400px;
-	width: 500px;
+	height: $radarchart-height;
+	width: $radarchart-width;
 
 	border: 1px solid darken($baseColor, 5%);
 	border-radius: $borderRadius;
@@ -65,6 +92,29 @@ $padding: 3px;
 	background-color: white;
 	margin-top: 0.6em;
 	margin-bottom: 0.6em;
+}
+.radarchart-text {
+	width: $barchart-width;
+	white-space: wrap;
+}
+
+.barchart-container {
+	height: $barchart-height;
+	width: $barchart-width;
+
+	border: 1px solid darken($baseColor, 5%);
+	border-radius: $borderRadius;
+	box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+	max-width: calc(100%);
+	overflow: hidden;
+	font-size: 1rem;
+	background-color: white;
+	margin-top: 0.6em;
+	margin-bottom: 0.6em;
+}
+.barchart-text {
+	width: $barchart-width;
+	white-space: wrap;
 }
 
 /* ------------------------------------------------------------------------

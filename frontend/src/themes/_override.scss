@@ -10,7 +10,7 @@ $default-font-family: "Source Sans 3", sans-serif;
 
 // 2. Conversation Header Overrides
 $color-primary: #c6e3fa !default;
-$color-primary-light: rgb(248, 248, 248) !default;
+$color-primary-light: rgb(250, 250, 250) !default;
 $color-primary-dark: #6ea9d7 !default;
 $color-primary-dark: #6eaad8 !default;
 
@@ -37,7 +37,7 @@ $color-secondary-dark: #64d3d3 !default;
 // 3. Message List
 .cs-message-list {
 	background-color: #ffffff !important;
-	background-image: url("../assets/UCI_SoE_logo_50.png");
+	// background-image: url("../assets/UCI_SoE_logo_50.png");
 	background-repeat: no-repeat; /* Prevent image repetition */
 	background-size: 75%;
 	background-position: center;
@@ -45,6 +45,16 @@ $color-secondary-dark: #64d3d3 !default;
 }
 
 // 4. Message Content
+.cs-message {
+	margin: 0.5em 0 !important;
+}
+
+.cs-message__content-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 .cs-message__content {
 	opacity: 0;
 	transform: translateY(20px);
@@ -55,6 +65,15 @@ $color-secondary-dark: #64d3d3 !default;
 	padding: 5px 10px !important;
 
 	// box-shadow: 5px 5px 3px 1px rgba(0, 0, 0, 0.3);
+}
+
+.cs-message__avatar {
+	justify-content: flex-start !important;
+}
+
+.cs-message-separator {
+	font-size: 1.2em !important;
+	font-weight: bold;
 }
 
 // 4. Typing Indicator
