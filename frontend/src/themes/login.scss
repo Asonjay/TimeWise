@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital@0;1&display=swap");
+$default-font-family: "Source Sans 3", sans-serif;
+
+$theme: lighten(#0a0c18, 20);
+$bg-light: lighten(#0a0c18, 88);
+$text-default: lighten(#0a0c18, 40);
+$text-light: lighten(#0a0c18, 60);
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.login-container {
+	margin: 1px 2px 2px 1px;
+	width: 790px;
+	height: 580px;
+	font-family: $default-font-family;
+	// background: #0a0c18;
+	// padding: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.wrapper {
+	$radius: 50px;
+	flex: 1;
+	max-width: 500px;
+	> div {
+		background: $theme;
+		color: #fff;
+		text-align: center;
+		border-top-right-radius: $radius;
+		border-top-left-radius: $radius;
+		h3 {
+			letter-spacing: 1px;
+			padding: 30px;
+			font-size: 2.5em;
+		}
+	}
+
+	.login-form {
+		background: $bg-light;
+		padding: 30px;
+		border-bottom-right-radius: $radius;
+		border-bottom-left-radius: $radius;
+		h5 {
+			display: flex;
+			justify-content: space-between;
+			margin-top: 10px;
+			a {
+				color: $text-default;
+				font-size: 1em;
+				line-height: 1.5;
+				font-weight: 400;
+				text-decoration: none;
+				outline: none;
+				span {
+					font-style: italic;
+					text-decoration: underline;
+					color: $theme;
+				}
+			}
+		}
+		.btn-submit {
+			display: block;
+			cursor: pointer;
+			outline: none;
+			width: 100%;
+			border: 1px solid $theme;
+			border-radius: $radius;
+			margin-top: 50px;
+			font-size: 1.5em;
+			line-height: 2;
+			color: #fff;
+			background: $theme;
+			transition: 0.3s;
+			&:hover {
+				box-shadow: 0 6px 12px -3px rgba(9, 30, 66, 0.4);
+				transform: translate(0, -3px);
+				background: lighten($theme, 5);
+			}
+		}
+	}
+}
+
+.input-field {
+	position: relative;
+	margin: 25px 0;
+	padding-left: 30px;
+	color: $text-default;
+
+	input {
+		background-color: transparent;
+		border: none;
+		outline: none;
+		border-radius: 0;
+		width: 100%;
+		font-size: 1.4em;
+		height: 40px;
+		border-bottom: 1px solid $text-light;
+		color: inherit;
+		transition: 0.2s ease;
+
+		&::placeholder {
+			color: transparent;
+		}
+
+		&:focus,
+		&:not(:placeholder-shown) {
+			border-bottom: 1px solid $theme;
+			box-shadow: 0 1px 0 0 $theme;
+		}
+
+		&:focus + label,
+		&:not(:placeholder-shown) + label {
+			transform: translateY(-14px) scale(0.85);
+			color: $theme;
+		}
+	}
+	label {
+		color: $text-light;
+		position: absolute;
+		top: 0;
+		left: 30px;
+		font-size: 1em;
+		cursor: text;
+		transform-origin: 0% 100%;
+		transform: translateY(14px);
+		transition: 0.2s ease-out;
+	}
+	i {
+		position: absolute;
+		top: 0;
+		left: 0;
+		font-size: 1.2em;
+		width: 30px;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: $text-light;
+	}
+}

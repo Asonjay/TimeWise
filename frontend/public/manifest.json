@@ -3,13 +3,23 @@
 	"name": "TimeWise",
 	"version": "1.0.0",
 	"description": "Your time management assistant.",
-	"permissions": ["activeTab", "storage", "scripting"],
 	"icons": {
 		"128": "icon128.png"
 	},
-
 	"action": {
 		"default_popup": "index.html",
 		"default_title": "Open the popup"
+	},
+	"permissions": ["activeTab", "storage", "scripting", "identity"],
+	"background": {
+		"scripts": ["background.js"],
+		"persistent": false
+	},
+	"oauth2": {
+		"client_id": "15040827408-0cjq6f29ti0bj985favc33ivnssm6slq.apps.googleusercontent.com",
+		"scopes": [
+			"https://www.googleapis.com/auth/userinfo.email",
+			"https://www.googleapis.com/auth/userinfo.profile"
+		]
 	}
 }

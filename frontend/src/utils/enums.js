@@ -1,6 +1,5 @@
 export const ROUTES = {
-	GENERATOR: "generator",
-	PROFILE: "profile",
+	LOGIN: "login",
 	CHATBOT: "chatbot",
 };
 

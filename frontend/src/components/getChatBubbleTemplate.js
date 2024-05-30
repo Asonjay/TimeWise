@@ -3,7 +3,7 @@ import {
 	Avatar,
 	MessageSeparator,
 } from "@chatscope/chat-ui-kit-react";
-import { MESSAGE_TYPE } from "../utils/enums";
+import { MESSAGE_TYPE } from "../utils/ENUMS";
 import {
 	PieChart,
 	LineChart,

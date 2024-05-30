@@ -12,14 +12,18 @@ import {
 import { TypingHeader } from "./TypingHeader";
 import { sendMessageToLLM } from "../utils/backend";
 import { getChatBubbleTemplate } from "./getChatBubbleTemplate";
-import { MESSAGE_TYPE } from "../utils/enums";
-import { WELCOME_MESSAGE, ADDITIONAL_MESSAGE } from "./const";
+import { ROUTES, MESSAGE_TYPE } from "../utils/ENUMS";
+import {
+	WELCOME_MESSAGE,
+	ADDITIONAL_MESSAGE,
+	TYPING_INDICATOR_MESSAGE,
+} from "../utils/CONSTANTS";
 
-function Chatbot() {
-	const [messages, setMessages] = useState([
-		// WELCOME_MESSAGE,
-		ADDITIONAL_MESSAGE,
-	]);
+function Chatbot({ setPage, credential, messages, setMessages }) {
+	// const [messages, setMessages] = useState([
+	// 	// WELCOME_MESSAGE,
+	// 	ADDITIONAL_MESSAGE,
+	// ]);
 	// const [messageType, setMessageType] = useState(MESSAGE_TYPE.TEXT);
 	const [isTyping, setIsTyping] = useState(false);
 
@@ -33,7 +37,7 @@ function Chatbot() {
 		const newMessages = [...messages, newMessage];
 		setMessages(newMessages);
 		setIsTyping(true);
-		await sendMessageToLLM(newMessages, setMessages, setIsTyping);
+		await sendMessageToLLM(credential, newMessages, setMessages, setIsTyping);
 	};
 
 	console.log("Messages", messages);
@@ -45,7 +49,11 @@ function Chatbot() {
 				<MainContainer>
 					<ChatContainer>
 						<ConversationHeader>
-							<ConversationHeader.Back />
+							<ConversationHeader.Back
+								onClick={() => {
+									setPage(ROUTES.GENERATOR);
+								}}
+							/>
 							<ConversationHeader.Content>
 								<TypingHeader />
 							</ConversationHeader.Content>
@@ -57,7 +65,7 @@ function Chatbot() {
 							scrollBehavior="auto"
 							typingIndicator={
 								isTyping ? (
-									<TypingIndicator content="TimeWise is thinking🤔" />
+									<TypingIndicator content={TYPING_INDICATOR_MESSAGE} />
 								) : null
 							}
 							autoScrollToBottom={true}
@@ -66,11 +74,18 @@ function Chatbot() {
 								return getChatBubbleTemplate(message, i);
 							})}
 						</MessageList>
-						<MessageInput
-							placeholder="Type message here"
-							onSend={handleSend}
-							attachButton={false}
-						/>
+						<div as={MessageInput}>
+							<MessageInput
+								placeholder={
+									isTyping
+										? " ⏳ Wait for response... ⏳"
+										: "💬 Type message here 💬"
+								}
+								onSend={handleSend}
+								attachButton={false}
+								disabled={isTyping}
+							/>
+						</div>
 					</ChatContainer>
 				</MainContainer>
 			</div>

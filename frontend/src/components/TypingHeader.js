@@ -1,7 +1,7 @@
 // Credit: https://codepen.io/asonjay/pen/VwNBbMw
 import React, { useEffect, useRef } from "react";
 import $ from "jquery";
-import { HEADER_ARRAY } from "./const";
+import { HEADER_ARRAY } from "../utils/CONSTANTS";
 
 export const TypingHeader = () => {
 	const typingHeaderRef = useRef(null);
@@ -14,8 +14,8 @@ export const TypingHeader = () => {
 			isParagraph = false;
 
 		// Speed (in milliseconds) of typing.
-		const speedForward = 10, //Typing Speed
-			speedWait = 1000000, // Wait between typing and backspacing
+		const speedForward = 100, //Typing Speed
+			speedWait = 10000, // Wait between typing and backspacing
 			speedBetweenLines = 1000, //Wait between first and second lines
 			speedBackspace = 25; //Backspace Speed
 
