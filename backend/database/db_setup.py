@@ -1,3 +1,5 @@
+# db_setup.py
+# This code if only for testing purposes. It creates a collection in the database.
 from MongoDB import MongoDB
 
 if __name__ == "__main__":

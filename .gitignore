@@ -1,3 +1,2 @@
-backend/api_key.yaml
-
 **/__pycache__/
+**/.env

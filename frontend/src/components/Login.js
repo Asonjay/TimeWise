@@ -1,7 +1,6 @@
 // src/Login.js
 import React, { useState } from "react";
-import { ROUTES } from "../utils/ENUMS";
-import { getChatHistory } from "../utils/backend";
+import { getChatHistory } from "../utils/api";
 
 function Login({ setPage, setCredential, setMessages }) {
 	const [isLoading, setIsLoading] = useState(false);

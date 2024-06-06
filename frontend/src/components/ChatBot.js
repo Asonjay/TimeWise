@@ -4,18 +4,18 @@ import {
 	MainContainer,
 	ChatContainer,
 	ConversationHeader,
-	InfoButton,
+	// InfoButton,
 	MessageList,
 	MessageInput,
 	TypingIndicator,
 } from "@chatscope/chat-ui-kit-react";
 import { TypingHeader } from "./TypingHeader";
-import { sendMessageToLLM } from "../utils/backend";
+import { sendMessageToLLM } from "../utils/api";
 import { getChatBubbleTemplate } from "./getChatBubbleTemplate";
 import { ROUTES, MESSAGE_TYPE } from "../utils/ENUMS";
 import {
-	WELCOME_MESSAGE,
-	ADDITIONAL_MESSAGE,
+	// WELCOME_MESSAGE,
+	// ADDITIONAL_MESSAGE,
 	TYPING_INDICATOR_MESSAGE,
 } from "../utils/CONSTANTS";
 
@@ -29,8 +29,8 @@ function Chatbot({ setPage, credential, messages, setMessages }) {
 
 	const handleSend = async (message) => {
 		const newMessage = {
-			type: MESSAGE_TYPE.TEXT,
 			content: message,
+			type: MESSAGE_TYPE.TEXT,
 			sender: "user",
 		};
 
@@ -40,8 +40,9 @@ function Chatbot({ setPage, credential, messages, setMessages }) {
 		await sendMessageToLLM(credential, newMessages, setMessages, setIsTyping);
 	};
 
-	console.log("Messages", messages);
-	console.log("--------------------------------------");
+	console.log("---------------------");
+	console.log("Messages Renderred:", messages);
+	console.log("---------------------");
 
 	return (
 		<div className="App">
@@ -57,9 +58,9 @@ function Chatbot({ setPage, credential, messages, setMessages }) {
 							<ConversationHeader.Content>
 								<TypingHeader />
 							</ConversationHeader.Content>
-							<ConversationHeader.Actions>
+							{/* <ConversationHeader.Actions>
 								<InfoButton title="Show Info" />
-							</ConversationHeader.Actions>
+							</ConversationHeader.Actions> */}
 						</ConversationHeader>
 						<MessageList
 							scrollBehavior="auto"

@@ -1,14 +1,9 @@
 testing_prompt = """
-When user says, sounds good, let's do it, respond with:
+Put whatever your text content inside the content field.
+Respond in following json format:
 {
-    "TYPE": <text>,
-    "CONTENT": "Hello Jenna! 🌟 I hope last week went as planned. How did it go? 🗓️"
-    "SEPARATOR": "One Week Later"
-}
-When user says, not really well, one hour each day is too much for me. respond with:
-{
-    "TYPE": <text>,
-    "CONTENT": "No worries, Jenna. 🙂 Life can be demanding, and finding that balance isn’t always easy. Let’s explore ways to <b>improve our plan</b>✅. <br><br>Can you first tell me what makes one hour feel too much for you? Understanding your perspective will help us <u>tailor a better approach</u>."
+    "type": <text>,
+    "content": <put your response here>
 }
 """
 
@@ -65,7 +60,7 @@ When user says "I am ready", respond with:
 """
 
 system_prompt = """
-You are a chatbot. Now I want to test your functionality of generating messages based on given format. You are only allowed to generate message types based on the description below. In addition, you can create a "dashboard", that includes a combination of those types above. Your response should be in the following JSON format: 
+You are a chatbot. Now I want to test your functionality of generating messages based on given format. You are only allowed to generate message types based on the description below. In addition, you can create a "dashboard", that includes a combination of those types above. Your response should be in the following exact format: (do not include json at the beginning)
 1. if you want to generate a text message: 
 {
     "TYPE": <text>, 
@@ -217,4 +212,11 @@ The JSON object should adhere to the following requirements:
 }
 
 You are only allowed to generate within the given format. Do not include the \n symbol and spaces in the format I provided.",
+"""
+
+welcome_prompt = """
+{
+    "type": "text",
+    "content": "Hello, this is TimeWise! Ask me anything! 😊"
+}
 """

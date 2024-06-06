@@ -199,7 +199,7 @@ const _getSeparatorTemplate = (message) => {
 // };
 
 export const getChatBubbleTemplate = (message, i) => {
-	console.log("Raw Message", message);
+	// console.log("Raw Message", message);
 
 	switch (message.type) {
 		case MESSAGE_TYPE.TEXT:
