@@ -1,6 +1,6 @@
 # app.py
 import os
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, make_response
 from flask_cors import CORS
 
 from utils import log_execution_time
@@ -16,7 +16,22 @@ init_db(app)
 
 @app.route('/')
 def index():
-    return None
+    html_content = """
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Hello World</title>
+    </head>
+    <body>
+        <h1>Hello World!</h1>
+    </body>
+    </html>
+    """
+    response = make_response(html_content)
+    response.headers['Content-Type'] = 'text/html'
+    return response
 
 @app.route('/chat_history', methods=['POST'])
 @log_execution_time
