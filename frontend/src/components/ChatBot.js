@@ -13,11 +13,7 @@ import { TypingHeader } from "./TypingHeader";
 import { sendMessageToLLM } from "../utils/api";
 import { getChatBubbleTemplate } from "./getChatBubbleTemplate";
 import { ROUTES, MESSAGE_TYPE } from "../utils/ENUMS";
-import {
-	// WELCOME_MESSAGE,
-	// ADDITIONAL_MESSAGE,
-	TYPING_INDICATOR_MESSAGE,
-} from "../utils/CONSTANTS";
+import { TYPING_INDICATOR_MESSAGE } from "../utils/CONSTANTS";
 
 function Chatbot({ setPage, credential, messages, setMessages }) {
 	// const [messages, setMessages] = useState([

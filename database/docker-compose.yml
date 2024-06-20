@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    restart: always
+    ports:
+      - "27017:27017" # This binds MongoDB port to the host's port
+    volumes:
+      - ./mongo-data:/data/db # Persists data on the host
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=timewise # Set MongoDB root user
+      - MONGO_INITDB_ROOT_PASSWORD=Woyaoqian! # Set MongoDB root password
+    networks:
+      - backend
+
+volumes:
+  mongo-data: # Define named volume for data persistence
+
+networks:
+  backend:
+    driver: bridge

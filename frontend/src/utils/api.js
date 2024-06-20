@@ -1,5 +1,6 @@
 import axios from "axios";
 import { ROUTES } from "./ENUMS";
+import { BACKEND_URL } from "./CONSTANTS";
 
 function _parseResponse(response) {
 	// Access the data property which can be an array of JSON strings or a single JSON string
@@ -47,7 +48,7 @@ export async function sendMessageToLLM(
 ) {
 	// console.log("Sending -> " + chatMessages);
 	await axios
-		.post("http://localhost:5000/send_message", {
+		.post(BACKEND_URL + "/send_message", {
 			credential: credential.email,
 			messages: chatMessages,
 		})
@@ -67,7 +68,7 @@ export async function getChatHistory(
 	setMessages
 ) {
 	await axios
-		.post("http://localhost:5000/chat_history", {
+		.post(BACKEND_URL + "/chat_history", {
 			credential: credential.email,
 		})
 		.then((response) => {

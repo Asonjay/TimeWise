@@ -5,5 +5,6 @@ MAX_TOKENS = 4096
 TEMPERATURE = 0.0
 MODEL_BASE_URL = "https://api.openai.com/v1/chat/completions"
 
-MONGO_URI = "mongodb://localhost:27017"
-DATABASE_NAME = "example_db"
+# Masked Out the DB Config, refer to docker-compose.yml for the actual values
+# MONGO_URI = "mongodb://localhost:27017"
+# DATABASE_NAME = "example_db"

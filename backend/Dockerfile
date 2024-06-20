@@ -10,11 +10,14 @@ COPY . /app
 # Install any needed packages specified in requirements.txt
 RUN pip install -r requirements.txt
 
+# Install Gunicorn
+RUN pip install gunicorn
+
 # Make port 5000 available to the world outside this container
 EXPOSE 5000
 
 # Define environment variable
 ENV NAME FlaskApp
 
-# Run app.py when the container launches
-CMD ["python", "app.py"]
+# Run Gunicorn when the container launches
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "app:app"]
