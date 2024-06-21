@@ -1,7 +1,14 @@
 # mongodb_client.py
+import os
 from flask import g
-from config import MONGO_URI, DATABASE_NAME
 from database.MongoDB import MongoDB
+
+MONGO_HOST = os.getenv('MONGODB_HOST', 'localhost')
+MONGO_PORT = os.getenv('MONGODB_PORT', '27017')
+DATABASE_NAME = os.getenv('MONGODB_DB_NAME', 'example_db')
+
+# Create the MongoDB URI
+MONGO_URI = f"mongodb://{MONGO_HOST}:{MONGO_PORT}/{DATABASE_NAME}"
 
 mongo_db = MongoDB(MONGO_URI, DATABASE_NAME)
 

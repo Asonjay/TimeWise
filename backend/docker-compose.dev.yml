@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  flaskapp:
+    build: 
+      context: .
+      dockerfile: Dockerfile.flask
+    container_name: flaskapp
+    ports:
+      - "80:5000"
+    environment:
+      - MONGODB_HOST=10.0.2.194
+      - MONGODB_PORT=27017
+      - MONGODB_DB_NAME=example_db
+    volumes:
+      - .:/app
+    command: python -u app.py

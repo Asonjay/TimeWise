@@ -2,16 +2,19 @@ version: "3.8"
 
 services:
   flaskapp:
-    build: .
+    build: 
+      context: .
+      dockerfile: Dockerfile.nginx
     container_name: flaskapp
     expose:
-      - "5000"
+      - "80"
     environment:
       - MONGODB_HOST=10.0.2.194
       - MONGODB_PORT=27017
       - MONGODB_DB_NAME=example_db
     volumes:
       - .:/app
+    # command: flask run --host=0.0.0.0 --port=5000
 
   nginx:
     image: nginx:latest

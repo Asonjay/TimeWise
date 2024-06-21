@@ -36,8 +36,8 @@ def index():
 @app.route('/chat_history', methods=['POST'])
 @log_execution_time
 def get_chat_history():
-    data = request.get_json()
-    messages = get_chat_history_service(data)
+    frontend_request = request.get_json()
+    messages = get_chat_history_service(frontend_request)
     return jsonify(messages)
 
 @app.route('/send_message', methods=['POST'])

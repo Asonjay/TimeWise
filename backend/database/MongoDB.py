@@ -1,6 +1,5 @@
 # MongoDB.py
 from pymongo import MongoClient, errors
-from config import MONGO_URI, DATABASE_NAME
 
 class MongoDB:
     def __init__(self, uri, database_name):
