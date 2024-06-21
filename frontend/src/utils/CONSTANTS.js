@@ -1,4 +1,4 @@
-export const BACKEND_URL = "http://localhost:5000/";
+export const BACKEND_URL = "http://35.82.137.63:80/";
 
 export const HEADER_ARRAY = [
 	"TimeWise",
